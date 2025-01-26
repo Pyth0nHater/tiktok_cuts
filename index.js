@@ -29,9 +29,12 @@ async function takeScreenshot(page, filename, bot, chatId) {
   // Запуск браузера
   const browser = await puppeteer.launch({
     headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      `--window-size=1920,1080`,
+    ],
     executablePath: executablePath(),
-    args: [`--window-size=1920,1080`],
     defaultViewport: {
       width: 1920,
       height: 1080,
