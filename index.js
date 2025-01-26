@@ -100,7 +100,7 @@ async function takeScreenshot(page, filename, bot, chatId) {
   await takeScreenshot(page, "3.png", bot, chatId);
 
   const post_btn =
-    'div[class="Button__root Button__root--shape-default Button__root--size-large Button__root--type-primary Button__root--loading-false"]';
+    'button[class="Button__root Button__root--shape-default Button__root--size-large Button__root--type-primary Button__root--loading-false"]';
   await page.click(post_btn);
   await sleep(15000 + Math.floor(Math.random() * 3000));
   await takeScreenshot(page, "4.png", bot, chatId);
