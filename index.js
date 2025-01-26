@@ -110,7 +110,7 @@ async function takeScreenshot(page, filename, bot, chatId) {
   });
 
   const post_btn =
-    'button[class="Button__root Button__root--shape-default Button__root--size-large Button__root--type-primary Button__root--loading-false"]';
+    "#root > div > div > div.css-fsbw52.ep9i2zp0 > div.css-86gjln.edss2sz5 > div > div > div > div.jsx-1810272162.footer > div > button.Button__root.Button__root--shape-default.Button__root--size-large.Button__root--type-primary.Button__root--loading-false";
   await page.click(post_btn);
   await sleep(15000 + Math.floor(Math.random() * 3000));
   await takeScreenshot(page, "4.png", bot, chatId);
