@@ -98,7 +98,7 @@ async function takeScreenshot(page, filename, bot, chatId) {
   await takeScreenshot(page, "3.png", bot, chatId);
 
   await page.evaluate(() => {
-    window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo(0, 100000000000);
   });
 
   const post_btn =
