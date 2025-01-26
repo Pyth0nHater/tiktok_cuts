@@ -2,6 +2,7 @@ const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 const fs = require("fs").promises;
 const TelegramBot = require("node-telegram-bot-api");
+const { executablePath } = require("puppeteer");
 
 // Добавляем плагин stealth
 puppeteer.use(StealthPlugin());
@@ -27,8 +28,9 @@ async function takeScreenshot(page, filename, bot, chatId) {
 
   // Запуск браузера
   const browser = await puppeteer.launch({
-    headless: false, // Открываем с интерфейсом
-    args: ["--no-sandbox", "--disable-setuid-sandbox"], // Дополнительные аргументы
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    executablePath: executablePath(),
   });
 
   const page = await browser.newPage();
