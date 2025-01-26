@@ -95,9 +95,11 @@ async function takeScreenshot(page, filename, bot, chatId) {
   }, description);
   await page.type(description, caption, { delay: 100 });
   await sleep(5000 + Math.floor(Math.random() * 3000));
-
-  // Снимок экрана
   await takeScreenshot(page, "3.png", bot, chatId);
+
+  await page.evaluate(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+  });
 
   const post_btn =
     'button[class="Button__root Button__root--shape-default Button__root--size-large Button__root--type-primary Button__root--loading-false"]';
