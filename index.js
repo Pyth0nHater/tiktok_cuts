@@ -31,6 +31,11 @@ async function takeScreenshot(page, filename, bot, chatId) {
     headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
     executablePath: executablePath(),
+    args: [`--window-size=1920,1080`],
+    defaultViewport: {
+      width: 1920,
+      height: 1080,
+    },
   });
 
   const page = await browser.newPage();
