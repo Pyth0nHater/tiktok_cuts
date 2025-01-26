@@ -32,12 +32,12 @@ async function takeScreenshot(page, filename, bot, chatId) {
     args: [
       "--no-sandbox",
       "--disable-setuid-sandbox",
-      `--window-size=1920,1080`,
+      `--window-size=1920,1920`,
     ],
     executablePath: executablePath(),
     defaultViewport: {
       width: 1920,
-      height: 1080,
+      height: 1920,
     },
   });
 
