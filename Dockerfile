@@ -1,21 +1,11 @@
-# Используем официальный образ Node.js
 FROM node:20
 
-# Устанавливаем переменные окружения для Puppeteer
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
-
-# Устанавливаем необходимые пакеты
+# Устанавливаем зависимости для Puppeteer и Chromium
 RUN apt-get update && apt-get install -y \
     chromium \
-    chromium-driver \
-    fonts-liberation \
-    libappindicator3-1 \
-    libasound2 \
     libatk1.0-0 \
     libatk-bridge2.0-0 \
     libcups2 \
-    libdbus-1-3 \
     libdrm2 \
     libgbm1 \
     libnspr4 \
@@ -33,15 +23,19 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Устанавливаем рабочую директорию
+# Рабочая директория
 WORKDIR /app
 
-# Копируем файлы проекта в контейнер
+# Копируем файлы проекта
 COPY package*.json ./
-COPY . .
 
 # Устанавливаем зависимости
 RUN npm install
+
+# Рабочая директория для приложения
+WORKDIR /app
+
+COPY . .
 
 # Открываем порт
 EXPOSE 3000
