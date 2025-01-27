@@ -33,6 +33,13 @@ async function takeScreenshot(page, filename, bot, chatId) {
       "--no-sandbox",
       "--disable-setuid-sandbox",
       `--window-size=1920,1920`,
+      "--aggressive-cache-discard",
+      "--disable-cache",
+      "--disable-application-cache",
+      "--disable-offline-load-stale-cache",
+      "--disable-gpu-shader-disk-cache",
+      "--media-cache-size=0",
+      "--disk-cache-size=0",
     ],
     executablePath: executablePath(),
     defaultViewport: {
