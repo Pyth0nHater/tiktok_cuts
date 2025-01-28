@@ -19,12 +19,14 @@ async function takeScreenshot(page, filename, bot, chatId) {
   await fs.unlink(screenshotPath);
 }
 
-(async () => {
-  const cookiesPath = "./cookies.json";
-  const botToken = "6807558708:AAEapTJk9thUr6NIIUxn8WRxpx1aoI7pnhs";
+async function uploadVideoToTikTok({
+  videoPath,
+  caption,
+  botToken,
+  chatId,
+  cookiesPath = "../cookies/cookies.json",
+}) {
   const bot = new TelegramBot(botToken);
-  const chatId = "819850346";
-  const caption = "test";
 
   // Запуск браузера
   const browser = await puppeteer.launch({
@@ -94,7 +96,7 @@ async function takeScreenshot(page, filename, bot, chatId) {
   await takeScreenshot(page, "1.png", bot, chatId);
 
   const elementHandle = await page.$('input[type="file"]');
-  await elementHandle.uploadFile("./video.mp4");
+  await elementHandle.uploadFile(videoPath);
   await sleep(10000 + Math.floor(Math.random() * 3000));
   await takeScreenshot(page, "2.png", bot, chatId);
 
@@ -123,4 +125,9 @@ async function takeScreenshot(page, filename, bot, chatId) {
   await takeScreenshot(page, "4.png", bot, chatId);
 
   await browser.close();
-})();
+}
+
+// Экспорт функции
+module.exports = {
+  uploadVideoToTikTok,
+};
